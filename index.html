@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Thu Chi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>Quản lý thu chi</h2>
+
+    <h3>Số tiền hiện có: <span id="balance">0</span> VND</h3>
+
+    <h3>Thêm giao dịch</h3>
+    <input type="text" id="description" placeholder="Mô tả">
+    <input type="number" id="amount" placeholder="Số tiền">
+    <button onclick="addTransaction()">Thêm</button>
+
+    <h3>Danh sách giao dịch</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Mô tả</th>
+                <th>Số tiền</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="transactionList"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
