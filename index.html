@@ -3,33 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Thu Chi</title>
+    <title>Đăng Ký, Đăng Nhập & Quản Lý Thu Chi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="registerSection">
+        <h2>Đăng Ký</h2>
+        <form id="registerForm">
+            <input type="text" id="regUsername" placeholder="Tài khoản" required>
+            <input type="password" id="regPassword" placeholder="Mật khẩu" required>
+            <button type="submit">Đăng Ký</button>
+        </form>
+    </div>
 
-    <h2>Quản lý thu chi</h2>
+    <div id="loginSection" style="display: none;">
+        <h2>Đăng Nhập</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Tài khoản" required>
+            <input type="password" id="password" placeholder="Mật khẩu" required>
+            <button type="submit">Đăng Nhập</button>
+        </form>
+    </div>
 
-    <h3>Số tiền hiện có: <span id="balance">0</span> VND</h3>
+    <div id="financeSection" style="display: none;">
+        <h2>Quản lý thu chi</h2>
+        <h3>Số tiền hiện có: <span id="balance">0</span> VND</h3>
+        
+        <h3>Thêm giao dịch</h3>
+        <input type="text" id="description" placeholder="Mô tả">
+        <input type="number" id="amount" placeholder="Số tiền">
+        <button onclick="addTransaction()">Thêm</button>
 
-    <h3>Thêm giao dịch</h3>
-    <input type="text" id="description" placeholder="Mô tả">
-    <input type="number" id="amount" placeholder="Số tiền">
-    <button onclick="addTransaction()">Thêm</button>
+        <h3>Danh sách giao dịch</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mô tả</th>
+                    <th>Số tiền</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="transactionList"></tbody>
+        </table>
+    </div>
 
-    <h3>Danh sách giao dịch</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Mô tả</th>
-                <th>Số tiền</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody id="transactionList"></tbody>
-    </table>
+    <script>
+        let users = {};
 
-    <script src="script.js"></script>
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let regUsername = document.getElementById("regUsername").value;
+            let regPassword = document.getElementById("regPassword").value;
+            
+            if (users[regUsername]) {
+                alert("Tài khoản đã tồn tại!");
+            } else {
+                users[regUsername] = regPassword;
+                alert("Đăng ký thành công! Hãy đăng nhập.");
+                document.getElementById("registerSection").style.display = "none";
+                document.getElementById("loginSection").style.display = "block";
+            }
+        });
 
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            
+            if (users[username] && users[username] === password) {
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("financeSection").style.display = "block";
+            } else {
+                alert("Sai tài khoản hoặc mật khẩu!");
+            }
+        });
+
+        let balance = 0;
+        function addTransaction() {
+            let description = document.getElementById("description").value;
+            let amount = parseFloat(document.getElementById("amount").value);
+            if (description && !isNaN(amount)) {
+                balance += amount;
+                document.getElementById("balance").textContent = balance.toLocaleString();
+                
+                let transactionList = document.getElementById("transactionList");
+                let row = transactionList.insertRow();
+                row.insertCell(0).textContent = description;
+                row.insertCell(1).textContent = amount.toLocaleString() + " VND";
+                
+                let deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Xóa";
+                deleteBtn.onclick = function () {
+                    balance -= amount;
+                    document.getElementById("balance").textContent = balance.toLocaleString();
+                    row.remove();
+                };
+                row.insertCell(2).appendChild(deleteBtn);
+            } else {
+                alert("Vui lòng nhập thông tin hợp lệ!");
+            }
+        }
+    </script>
 </body>
 </html>
