@@ -11,37 +11,54 @@ body {
 
 .container {
     background: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
     text-align: center;
+    transition: 0.3s;
 }
 
 h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 26px;
+    margin-bottom: 15px;
     color: #333;
+}
+
+h3 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #444;
 }
 
 input {
     width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 18px;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 button {
     width: 100%;
-    padding: 15px;
+    padding: 12px;
     background-color: #007BFF;
     border: none;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 6px;
+    transition: 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
@@ -60,4 +77,105 @@ button:hover {
 
 .links a:hover {
     text-decoration: underline;
+}
+
+/* 🔥 PHẦN TỐI ƯU CHO NGÂN SÁCH */
+.budget-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.budget-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    color: #333;
+}
+
+#budget {
+    color: #dc3545; /* Đỏ */
+}
+
+#remaining {
+    color: #28a745; /* Xanh lá */
+}
+
+#setBudgetBtn {
+    background-color: #28a745;
+}
+
+#setBudgetBtn:hover {
+    background-color: #218838;
+}
+
+/* 🔥 PHẦN TỐI ƯU CHO DANH SÁCH GIAO DỊCH */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f1f1f1;
+}
+
+td:last-child {
+    text-align: center;
+}
+
+.edit-btn, .delete-btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* 🔥 RESPONSIVE CHO MOBILE */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    input, button {
+        font-size: 14px;
+    }
+
+    table {
+        font-size: 14px;
+    }
 }
