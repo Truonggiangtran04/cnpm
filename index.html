@@ -9,13 +9,19 @@
 <body>
     <div class="container">
         <h2>Quản lý thu chi</h2>
-        <h3>Số tiền hiện có: <span id="balance">0</span></h3>
-        
+        <h3>Số tiền đã chi tiêu: <span id="balance">0</span> VND</h3>
+
+        <!-- Thêm phần nhập ngân sách -->
+        <h3>Ngân sách</h3>
+        <input type="number" id="budget" placeholder="Nhập ngân sách">
+        <button id="setBudgetBtn">Đặt ngân sách</button>
+
+        <h3>Số tiền còn lại: <span id="remaining">0</span> VND</h3>
+
         <h3>Thêm giao dịch</h3>
         <input type="text" id="description" placeholder="Mô tả">
         <input type="number" id="amount" placeholder="Số tiền">
         <button id="addTransactionBtn">Thêm</button>
-
 
         <h3>Danh sách giao dịch</h3>
         <table>
